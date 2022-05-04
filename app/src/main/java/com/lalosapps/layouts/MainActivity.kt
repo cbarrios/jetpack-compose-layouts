@@ -351,7 +351,13 @@ fun StaggeredGridExample(
         "Religion", "Social sciences", "Technology", "TV", "Writing"
     )
 ) {
-    Row(modifier = modifier.horizontalScroll(rememberScrollState())) {
+    Row(
+        modifier = modifier
+            .background(color = Color.LightGray)
+            .padding(16.dp) // order matters: having padding here and then size is diff than the opposite
+            .size(200.dp)
+            .horizontalScroll(rememberScrollState())
+    ) {
         StaggeredGrid(rows = 5) {
             for (topic in topics) {
                 Chip(modifier = Modifier.padding(8.dp), text = topic)
