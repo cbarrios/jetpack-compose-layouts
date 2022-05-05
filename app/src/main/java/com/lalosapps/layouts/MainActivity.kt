@@ -55,7 +55,9 @@ fun MyApp() {
         //SimpleList()
         //MyOwnColumnExample()
         //StaggeredGridExample()
-        ConstraintLayoutExample()
+        //ConstraintLayoutExample()
+        //DecoupledConstraintLayout()
+        TwoTexts(text1 = "Hi", text2 = "thereeeeeeeeeeeeeeeeeeeeeeee")
     }
 }
 
@@ -455,6 +457,43 @@ fun DecoupledConstraintLayout() {
             }
 
             Text("Text", Modifier.layoutId("text"))
+        }
+    }
+}
+
+// The divider height will be the same as the largest height of any text
+@Composable
+fun TwoTexts(modifier: Modifier = Modifier, text1: String, text2: String) {
+    Row(modifier = modifier.height(IntrinsicSize.Min)) {
+        Text(
+            modifier = Modifier
+                .weight(1f)
+                .padding(start = 4.dp)
+                .wrapContentWidth(Alignment.Start),
+            text = text1
+        )
+
+        Divider(
+            color = MaterialTheme.colors.onSurface, modifier = Modifier
+                .fillMaxHeight()
+                .width(1.dp)
+        )
+        Text(
+            modifier = Modifier
+                .weight(1f)
+                .padding(end = 4.dp)
+                .wrapContentWidth(Alignment.End),
+            text = text2
+        )
+    }
+}
+
+@Preview
+@Composable
+fun TwoTextsPreview() {
+    LayoutsTheme {
+        Surface {
+            TwoTexts(text1 = "Hi", text2 = "thereeeeeeeeeeeeeeeeeeeeeeee")
         }
     }
 }
